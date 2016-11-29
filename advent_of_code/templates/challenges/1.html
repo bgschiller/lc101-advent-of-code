@@ -1,0 +1,74 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>LC101 Advent of Code</title>
+  <meta name="description" content="LC101 Advent of Code">
+  <meta name="author" content="Brian Schiller">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <h1>Advent of Code, Day 1</h1>
+  <hr/>
+  <p>
+    It is a gift-giving joke to wrap a present up in a several nested boxes. Some people take it overboard, though, and even Santa can’t keep up. He makes a diagram like this:
+  </p>
+  <pre>((()())())</pre>
+  <p>
+  	to mean:
+  </p>
+  <pre>
+    (           ) a box
+      (    )()  containing two boxes, of which the second is empty and the first contains
+       ()()     two empty boxes.</pre>
+      This notation works okay, but it can also produce nonsense like
+      <code>())</code>.
+      What is that?? half a box? Or this
+      <code>((()()(())())</code>.
+      That’s a little harder to tell, but it’s also unbalanced:
+  <pre>
+    (               ) a box
+      (         )() containing two boxes, the right one of which is empty, the other one contains
+        ()()( )     three boxes, the right one of which contains
+             (      a single open paren! that’s not a box!</pre>
+  <p>
+  Write a program to tell if a string of parens represents a possible nesting of boxes. Here are some examples for testing:
+</p>
+<ul>
+  <li><code>((((()())(()()()())(()()())))(((()()()))))</code> Boxable</li>
+  <li><code>((((())(()()())()()))((()()()())(()())(()()()()))((()()()))))</code> Unboxable </li>
+  <li><code>((((()()()))((()(()))((()()())(())()))((()())(()())))(((())(())(()))((()()()())((()()()))((())(()()())(()()()()))))</code> Unboxable </li>
+  <li><code>((((()()()()))(()(())(()()()())(()))((()))(()()()())(()()())))(((()()()())(())))((((())(()())(()()()))((()())(())(()())(()()))))</code> Boxable </li>
+  <li><code>((((()())(()()()()))((()())(()())(()()))((()())(())()())))(((()())(()()())(()(()()))((()())()()))((()))))</code> Unboxable </li>
+  <li><code>((((()())(()()()()))()(((())))) </code> Unboxable </li>
+  <li><code>()</code> Boxable </li>
+  <li><code>((((()()())(()())(())()())())))(((()))(()()(()(()))))</code> Unboxable </li>
+  <li><code></code> Boxable </li>
+  <li><code>((((()()(()))((())(())(()()))((())(()()))))</code> Unboxable </li>
+  <li><code>)</code> Unboxable </li>
+  <li><code>((((())(()()))(())(())()))((()())(()())(()()()())))(((())()())(()())(()))((()())(()()()())(()()())))((()()())))(((()()()))(()))))</code> Unboxable </li>
+  <li><code>((((())(()()()())(()())(()())()()))((()())(())())(()()()())(()()()))((()()))((()())(())(()())())(()))))</code> Unboxable </li>
+  <li><code>(())</code> Boxable </li>
+  <li><code>((((()()())(()()()))((()()()())))(((()()()())(())())))((()())(())((()()()()))()))</code> Unboxable </li>
+  <li><code>((((()()())))(((()(())(()()()()))((()()()))((())(()()())))(((()))((()())(()()(()())((()()))((()())(()())(()))((())(()())(()()()()))))</code> Unboxable </li>
+</ul>
+When you have an answer, choose 'Boxable' or 'Unboxable' for your solution to this one:
+<pre>(((((((()()(())(())()()()()))((())())(()()()())(()())(())))((()()()())())((()())))(((()()()())))(((())(()())(()()()))((()())(()()())(()()))((()())((()))))((((()()()()))((()()())(()))))))((((((()()))))()()((((()))(()()()()))(()()))((()())(()()()))((()()()())(()()(()())(()()()))((())(()()()())))((((())(()()())))(((()())))(((())()))((()()()))((()()()())(())(()()()()))))()(((()()()())(()())(())(()))((()()())(()())(()()(()()))((()())(())(()()()())(()()())())))(((()(())(()()())(()())(())))))(((((()(()))((())(()()())(())(()(()())))(((()))((()())(()())(())))(((())(()())(()()()))((())((()())(()()())(()))((())()())(()())(()))((()())(())))(((()())(()()()())(())))))(((((())(()()())(()()))((())(()()())))(((()())(()()())(()()()))((()()()())))(((()()())(())(()))((()(())(())))(((())()())(()))(((()()()())(()()))((())(())(())(()))))((((()()())(())())((()()())(()())(()()())))(((())(()))((())(()())(()()()())(()()()))((()())(())))(((()()()())(()()())()))((()())()((())(())(()()))((()()))))((((())()()())()((())))(((()()()())(()())(()())()((()))((()()))((())))(((())((()())(()())(()()()()))((())(())(())(()))((()()()))))))((((((()))(()()()())(())))(((())(()()()())(()))((())(()()()())(())(()))))((((())(()())())(()()())(()()))((()(()()()))((()()())(()))(((()()())))(((())(())(()()()())(()()())))))(((((()())())((()()())))(((())(()())(()()))((()()())(()())(()()()(()))((()()()()(()()()())(()()))((())(()()())))()((()())(()())(())))))))</pre>
+{% from "_formhelpers.html" import render_field %}
+<form method="post">
+  <dl>
+    {{ render_field(form.answer) }}
+    {{ form .hidden_tag() }}
+  </dl>
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
