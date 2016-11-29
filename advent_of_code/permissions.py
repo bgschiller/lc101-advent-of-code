@@ -10,7 +10,7 @@ class NotYetSolvedError(Exception):
     pass
 
 def user_has_solved(day):
-    return day in session.get('solved_problems', [])
+    return day in session.get('solved_challenges', [])
 
 def advent_day_reached(day):
     return datetime.datetime.now() > datetime.datetime(2016, 12, day)
@@ -23,9 +23,9 @@ def _require_day_based_permission(test, error):
 
         @wraps(view)
         def checks_test(*args, **kwargs):
-            args = inspect.getcallargs(view, *args, **kwargs)
-            if not test(args['day']):
-                raise error(args['day'])
+            cargs = inspect.getcallargs(view, *args, **kwargs)
+            if not test(cargs['day']):
+                raise error(cargs['day'])
             return view(*args, **kwargs)
         return checks_test
     return decorator
