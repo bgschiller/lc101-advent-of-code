@@ -107,3 +107,18 @@ pre, code, kbd, samp {background-color: #fff6c3; }
 ul.errors {
   background-color: tomato;
 }
+
+#flashes {
+  background: #fde073;
+  text-align: center;
+  line-height: 2.5;
+}
+#flashes p {
+  margin: 0;
+}
+#flashes .error {
+  background: tomato;
+}
+#flashes .success {
+  background: #47c747;
+}

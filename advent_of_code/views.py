@@ -1,5 +1,5 @@
 from . import app
-from flask import url_for, render_template, session, redirect
+from flask import url_for, render_template, session, redirect, flash
 from .permissions import require_user_has_solved, require_advent_day_reached, NotYetPublishedError, NotYetSolvedError
 from .forms import BoxableChallenge
 @app.route('/')
@@ -13,6 +13,7 @@ def not_yet_published_redir(error):
 
 @app.errorhandler(NotYetSolvedError)
 def not_yet_solved_redir(error):
+    flash('you must solve the problem before you can view or post solutions', 'warning')
     return redirect(url_for('challenges_view', day=error.args[0]))
 
 @app.route('/challenges/<int:day>', methods=['GET', 'OPTIONS', 'POST'])
@@ -31,6 +32,8 @@ def challenges_view(day):
 
 @app.route('/not_yet_published')
 def not_yet_published():
+    flash('yolo', 'error')
+    flash('good things', 'success')
     return render_template('not_yet_published.html')
 
 @app.route('/submissions/<int:day>')
