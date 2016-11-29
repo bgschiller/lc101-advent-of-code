@@ -22,6 +22,7 @@ def challenges_view(day):
     if form.validate_on_submit():
         print('you got it!')
         session['solved_challenges'] = session.get('solved_challenges',[]) + [day]
+        return redirect(url_for('challenges_view', day=day))
     return render_template(
         'challenges/{}.html'.format(day),
         form=form,
