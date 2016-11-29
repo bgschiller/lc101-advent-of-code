@@ -1,21 +1,5 @@
-<!doctype html>
-
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-
-  <title>LC101 Advent of Code</title>
-  <meta name="description" content="LC101 Advent of Code">
-  <meta name="author" content="Brian Schiller">
-
-  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-
-  <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-  <![endif]-->
-</head>
-
-<body>
+{% extends 'base.html' %}
+{% block content %}
   <h1>Advent of Code, Day 1</h1>
   <hr/>
   <p>
@@ -43,20 +27,20 @@
   Write a program to tell if a string of parens represents a possible nesting of boxes. Here are some examples for testing:
 </p>
 <ul>
+  <li><code>()</code> Boxable </li>
+  <li><code>)</code> Unboxable </li>
+  <li><code>(())</code> Boxable </li>
+  <li><code></code> Boxable </li>
+  <li><code>((((()())(()()()()))()(((())))) </code> Unboxable </li>
   <li><code>((((()())(()()()())(()()())))(((()()()))))</code> Boxable</li>
   <li><code>((((())(()()())()()))((()()()())(()())(()()()()))((()()()))))</code> Unboxable </li>
   <li><code>((((()()()))((()(()))((()()())(())()))((()())(()())))(((())(())(()))((()()()())((()()()))((())(()()())(()()()()))))</code> Unboxable </li>
   <li><code>((((()()()()))(()(())(()()()())(()))((()))(()()()())(()()())))(((()()()())(())))((((())(()())(()()()))((()())(())(()())(()()))))</code> Boxable </li>
   <li><code>((((()())(()()()()))((()())(()())(()()))((()())(())()())))(((()())(()()())(()(()()))((()())()()))((()))))</code> Unboxable </li>
-  <li><code>((((()())(()()()()))()(((())))) </code> Unboxable </li>
-  <li><code>()</code> Boxable </li>
   <li><code>((((()()())(()())(())()())())))(((()))(()()(()(()))))</code> Unboxable </li>
-  <li><code></code> Boxable </li>
   <li><code>((((()()(()))((())(())(()()))((())(()()))))</code> Unboxable </li>
-  <li><code>)</code> Unboxable </li>
   <li><code>((((())(()()))(())(())()))((()())(()())(()()()())))(((())()())(()())(()))((()())(()()()())(()()())))((()()())))(((()()()))(()))))</code> Unboxable </li>
   <li><code>((((())(()()()())(()())(()())()()))((()())(())())(()()()())(()()()))((()()))((()())(())(()())())(()))))</code> Unboxable </li>
-  <li><code>(())</code> Boxable </li>
   <li><code>((((()()())(()()()))((()()()())))(((()()()())(())())))((()())(())((()()()()))()))</code> Unboxable </li>
   <li><code>((((()()())))(((()(())(()()()()))((()()()))((())(()()())))(((()))((()())(()()(()())((()()))((()())(()())(()))((())(()())(()()()()))))</code> Unboxable </li>
 </ul>
@@ -70,5 +54,4 @@ When you have an answer, choose 'Boxable' or 'Unboxable' for your solution to th
   </dl>
   <input type="submit" value="Submit">
 </form>
-</body>
-</html>
+{% endblock %}

@@ -20,6 +20,10 @@ def challenges_view(day):
         day=day,
         solved_challenges=session.get('solved_challenges', []))
 
+@app.route('/not_yet_published')
+def not_yet_published():
+    return render_template('not_yet_published.html')
+
 @app.route('/submissions/<int:day>')
 @require_user_has_solved
 def submissions_view(day):

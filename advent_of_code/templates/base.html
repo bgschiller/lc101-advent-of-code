@@ -1,0 +1,22 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>{% block title %}LC101 Advent of Code{% endblock %}</title>
+  <meta name="description" content="LC101 Advent of Code">
+  <meta name="author" content="Brian Schiller">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  {% block content %}
+  {% endblock content %}
+</body>
+</html>
