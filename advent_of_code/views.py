@@ -23,7 +23,9 @@ def not_yet_published():
 @app.route('/')
 def index():
     ''' list of challenges '''
-    return render_template('index.html')
+    return render_template(
+        'index.html',
+        challenges=all_challenges, user_has_solved=user_has_solved)
 
 @app.route('/challenges/<int:day>!important', methods=['GET', 'OPTIONS', 'POST'])
 def challenges_view_unprotected(day):

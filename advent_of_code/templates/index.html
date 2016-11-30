@@ -4,14 +4,20 @@
 <hr>
 <ol>
   {% for challenge in challenges %}
-  <li>
-    {% if challenge.published %}
-      <a href="url_for('challenges_view', day=challenge.day)">
-        {{ challenge.title }}
+    <li>
+      {% if challenge.published %}
+        <a href="{{ url_for('challenges_view', day=challenge.day) }}">
+          {{ challenge.title }}
+        </a>
+      {% else %}
+      {{ challenge.title }}
+      {% endif %}
+      {% if user_has_solved(challenge.day) %}
+      <a href="{{ url_for('submissions_view', day=challenge.day) }}">
+        (view solutions)
       </a>
-    {% else %}
-    {{ challenge.title }}
-    {% endif %}
-  </li>
+      {% endif %}
+    </li>
+  {% endfor %}
 </ol>
 {% endblock content %}
