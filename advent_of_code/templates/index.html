@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Advent of Code</h1>
+<hr>
+<ol>
+  {% for challenge in challenges %}
+  <li>
+    {% if challenge.published %}
+      <a href="url_for('challenges_view', day=challenge.day)">
+        {{ challenge.title }}
+      </a>
+    {% else %}
+    {{ challenge.title }}
+    {% endif %}
+  </li>
+</ol>
+{% endblock content %}

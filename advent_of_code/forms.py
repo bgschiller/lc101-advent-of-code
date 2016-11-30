@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SelectField
+from wtforms import StringField, TextAreaField
 from wtforms.validators import DataRequired, ValidationError
 
 class SubmitChallenge(FlaskForm):
@@ -13,7 +13,3 @@ class SubmitChallenge(FlaskForm):
 class SubmitSolution(FlaskForm):
     name = StringField('name', [DataRequired()])
     code = TextAreaField('code', [DataRequired()])
-
-class BoxableChallenge(SubmitChallenge):
-    answer = SelectField('answer', choices=[('boxable', 'Boxable'), ('unboxable', 'Unboxable')])
-    acceptable_answers = ['unboxable']

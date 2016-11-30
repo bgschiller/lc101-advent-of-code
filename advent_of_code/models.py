@@ -3,7 +3,9 @@ from flask import g
 from . import app
 
 def connect_db():
-    return psycopg2.connect(app.config['DATABASE_URL'])
+    conn = psycopg2.connect(app.config['DATABASE_URL'])
+    conn.autocommit = True
+    return conn
 
 @app.before_request
 def before_request():
@@ -24,22 +26,22 @@ def get_recent_submissions():
         ''')
 
 def create_new_submission(name, code):
-    return dictfetchall(
+    res = dictfetchall(
         '''
         INSERT INTO submissions(name, code)
         VALUES (%(name)s, %(code)s)
         RETURNING *
         ''',
         dict(name=name, code=code))[0]
-
+    return res
 
 def dictfetchall(query, params=None):
     if params is None:
         params = ()
     with g.db.cursor() as c:
         c.execute(query, params)
-        keys = [col[0] for col in cursor.description]
+        keys = [col[0] for col in c.description]
         return [
             dict(zip(keys, row))
-            for row in cursor.fetchall()
+            for row in c.fetchall()
         ]

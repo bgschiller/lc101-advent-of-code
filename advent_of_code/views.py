@@ -1,8 +1,9 @@
 from . import app
 from flask import url_for, render_template, session, redirect, flash
-from .permissions import require_user_has_solved, require_advent_day_reached, NotYetPublishedError, NotYetSolvedError
-from .forms import BoxableChallenge, SubmitSolution
+from .permissions import require_user_has_solved, require_advent_day_reached, NotYetPublishedError, NotYetSolvedError, user_has_solved
+from .forms import SubmitSolution
 from .models import get_recent_submissions, create_new_submission
+from .challenges import all_challenges, get_challenge
 
 @app.errorhandler(NotYetPublishedError)
 def not_yet_published_redir(error):
@@ -24,19 +25,25 @@ def index():
     ''' list of challenges '''
     return render_template('index.html')
 
-@app.route('/challenges/<int:day>', methods=['GET', 'OPTIONS', 'POST'])
-#@require_advent_day_reached
-def challenges_view(day):
-    form = BoxableChallenge()
+@app.route('/challenges/<int:day>!important', methods=['GET', 'OPTIONS', 'POST'])
+def challenges_view_unprotected(day):
+    challenge = get_challenge(day)
+    form = challenge.form()
     if form.validate_on_submit():
         flash('you got it!', 'succhess')
         session['solved_challenges'] = session.get('solved_challenges',[]) + [day]
         return redirect(url_for('challenges_view', day=day))
     return render_template(
         'challenges/{}.html'.format(day),
+        title=challenge.title,
         form=form,
         day=day,
-        solved_challenges=session.get('solved_challenges', []))
+        is_solved=user_has_solved(day))
+
+@app.route('/challenges/<int:day>', methods=['GET', 'OPTIONS', 'POST'])
+@require_advent_day_reached
+def challenges_view(day):
+    return challenges_view_unprotected(day)
 
 @app.route('/submissions/<int:day>',  methods=['GET', 'OPTIONS', 'POST'])
 @require_user_has_solved
