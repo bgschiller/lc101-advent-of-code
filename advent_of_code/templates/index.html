@@ -10,7 +10,7 @@
           {{ challenge.title }}
         </a>
       {% else %}
-      {{ challenge.title }}
+      {{ challenge.title }} <emph>(available on Dec {{ challenge.day }})</emph>
       {% endif %}
       {% if user_has_solved(challenge.day) %}
       <a href="{{ url_for('submissions_view', day=challenge.day) }}">

@@ -212,3 +212,7 @@ ul.errors {
 #flashes .success {
   background: #47c747;
 }
+emph {
+  font-style: italic;
+  color: #777;
+}

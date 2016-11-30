@@ -1,0 +1,53 @@
+{% extends 'challenge_base.html' %}
+
+<p>
+  Some kids are very secretive, and encrypt their wishlists. Luckily, they don't know much about cryptography and only ever use caesar ciphers.
+</p>
+<p>
+  Caesar ciphers are susceptible to frequency analysis attacks. In English, the most common letters are <code>e</code>, then <code>t</code>, then <code>a</code>. If a letter to Santa is encrypted using the <code>m</code> as the key, it's pretty likely that the most common letters will be <code>q</code>, then <code>f</code>, then <code>m</code>.
+</p>
+<p>
+  We have a plaintext frequency table. (You can get this off of wikipedia, or just use your <code>frequency_table</code> on a book from Project Gutenberg. It looks something like this:
+</p>
+<pre>
+Letter:      A       B       C       D       E       F    ...  Z
+Frequency: .08167  .01492  .02782  .04253  .12702  .02228   .00074
+</pre>
+<p>
+  To figure out the encryption key, we will guess each one in turn, and compute the frequency table of the message under this decryption key. That looks something like this:
+<pre>
+Letter:      A       B       C       D       E       F   ...  Z
+Frequency: .02228  .02015  .06094  .06966  .00153  .00772   .12702
+</pre>
+<p>
+  We need to compare each of these 26 tables to the normal English-language table to figure out <strong>which key gives us output that looks most like English</strong>. There are a number of good ways to do that, but here's one:
+</p>
+{% set distance_stub %}
+def distance(freq_table1, freq_table2):
+    """
+    Compute the sum-of-squares distance between
+    two letter-frequency distributions
+    """
+    # dist= 0
+    # For every letter a..z:
+        # dist += ((freq of letter in freq_table1) - (freq of letter in freq_table2))**2
+    # return dist
+{% endset %}
+<div class="highlight">{{ distance_stub | highlight }}</div>
+<p>
+  here are some example wishlists to try out:
+</p>
+<ul>
+  <li><pre>Jkgx Ygtzg,
+Grr O xkgrre xkgrre cgtz lux inxoyzsgy oy g zaxzrk. O'bk grcgey cgtzkj g zaxzrk hkigayk zaxzrky gxk znk iuurkyz.
+
+Zngtq eua,
+Rubk,
+Ksore
+</pre> (This one is pretty easy to do by hand because I left in the punctuation, capitalization and spaces)</li>
+  <li><code>xyulmuhnucfceysioxisiofceygycqiofxfceyuxmgulcijfyumyhyrnsyulcqcffacpysiogihysbiqxiymnbunmiohxjlynnswiifcnxiymnigynbunmnbyxyuf</code></li>
+  <li><code>uvrijrekrpfligifsrscpaljkjfdvgvijfeyzivukfivrukyzjzwefkkyvezjkreutfiivtkvuznzccjkzcckvccpflznrekrgcrpjkrkzfezdknvcmvpvrijslkzdnizkzexkyzjsvtrljvzsvczvmvkyvivzjtyizjkdrjdrxztjfdvnyviv</code></li>
+</ul>
+<p>When you've got a solution, submit the plaintext of the following letter:
+  <code>ghduvdqwdlzrxogolnhdwrbsxsdwrbnlwwhqdwrbexqqbdqgdwrbkruvhdqgdovrdvpdoosodqhwkdwlfrxogulghlqlzrxogolnhdfrorulqjerrnwrr</code>
+</p>

@@ -33,6 +33,12 @@ all_challenges.append(Challenge(
     day=2,
     title='conserving candles',
     answers=['66', '66%', '0.66']))
+all_challenges.append(Challenge(
+    day=3,
+    title='wishlist snooping',
+    answers=[
+        'dear santa i would like a toy pup a toy kitten a toy bunny and a toy horse and also a small plane that i could ride in i would like a coloring book too',
+        'dear santa i would like a toy pup a toy kitten a toy bunny and a toy horse and also a small plane that i could ride in i would like a coloring book too'.replace(' ', '')]))
 
 def get_challenge(day):
     challenge = all_challenges[day - 1]
