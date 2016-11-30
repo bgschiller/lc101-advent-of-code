@@ -11,13 +11,13 @@ all_challenges = []
 class Challenge(namedtuple(
     'ChallengeParent',
     ['day', 'title', 'form'])):
-    def __new__(self, day, title, form=None, acceptable_answers=None):
+    def __new__(self, day, title, form=None, answers=None):
         if form is None:
             # You don't want a custom form? that's cool, we can make you a
             # standard one if you tell us what the acceptable_answers are.
-            assert acceptable_answers is not None, "must pass either 'form' or 'acceptable_answers'"
+            assert answers is not None, "must pass either 'form' or 'answers'"
             class form(SubmitChallenge):
-                acceptable_answers = acceptable_answers
+                acceptable_answers = answers
 
         return super(Challenge, self).__new__(self, day, title, form)
 
@@ -32,7 +32,7 @@ all_challenges.append(Challenge(
 all_challenges.append(Challenge(
     day=2,
     title='conserving candles',
-    acceptable_answers=['66', '66%', '0.66']))
+    answers=['66', '66%', '0.66']))
 
 def get_challenge(day):
     challenge = all_challenges[day - 1]

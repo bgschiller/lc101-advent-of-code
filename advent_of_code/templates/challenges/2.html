@@ -1,0 +1,37 @@
+{% extends 'challenge_base.html' %}
+{% block puzzle_text %}
+  <p>
+    As you may know, candles are lit each of the 8 nights of Hannukah. On the first night 2 are lit, then 3 on the second night, and so on until we light 9 on the last night. This uses 2 + 3 + ... + 9 = 44 total candles. Ordinarily.
+  </p>
+  <p>
+    Unfortunately, this year candles are in short supply. There aren't enough for 44 for each family. You are in charge of rationing them out, and you've determined that there are enough for 21 for everyone.
+  </p>
+  <p>
+     Now, when the candles burn, not all of the wax is consumed. We can probably reclaim most of the wax, maybe as much as 80%. So that's what you instruct families to do.
+  </p>
+  <p>
+    Given a number of candles that each family recieves, determine the smallest percent of wax each family must reclaim from each candle in order to have enough candles to celebrate all 8 nights of Hannukah (2-digits, 75%, 45%, none of this 75.1122%).
+  </p>
+  <p>
+    Remember that even if you can't make a whole candle out of the reclaimed wax, you can save it for the next day. So if you have a reclamation of 40%, on the first night you only end up with 0.8 of a candle. Not to worry though, because that carries over to the next day.
+  </p>
+  <p>
+    So, for example, if everyone gets 21 candles, a reclamation percent of .4 is not enough:
+  </p>
+  <pre>
+1st Night: need 2 candles, have 21
+  reclaimed 0; now have 19 and 0.4 leftover
+2nd Night: need 3 candles, have 19
+  reclaimed 1; now have 17 and 0 leftover
+3rd Night: need 4 candles, have 17
+  reclaimed 0; now have 13 and 0.8 leftover
+4th Night: need 5 candles, have 13
+  reclaimed 1; now have 9 and 0.8 leftover
+5th Night: need 6 candles, have 9
+  reclaimed 2; now have 5 and 0 leftover
+6th Night: need 7 candles, have 5, so we run out!
+</pre>
+  <p>
+    What is the smallest reclamation percent possible for the candles to last as long as necessary? Enter your answer as a two-digit number: 86%, not 85.222%
+  </p>
+{% endblock puzzle_text %}
