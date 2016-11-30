@@ -29,7 +29,10 @@ all_challenges.append(Challenge(
     day=1,
     title='well-wrapped presents',
     form=BoxableChallenge))
-
+all_challenges.append(Challenge(
+    day=2,
+    title='conserving candles',
+    acceptable_answers=['66', '66%', '0.66']))
 
 def get_challenge(day):
     challenge = all_challenges[day - 1]

@@ -3,7 +3,16 @@
   <h1>Advent of Code, Day 1: {{ title }}</h1>
   <hr/>
 
-{% block puzzle_text %}{% endblock puzzle_text %}
+  {% block puzzle_text %}{% endblock puzzle_text %}
 
-{% block submit_answer %}{% endblock submit_answer %}
+  {% block submit_answer %}
+    {% from "_formhelpers.html" import render_field %}
+    <form method="post">
+      <dl>
+        {{ render_field(form.answer) }}
+        {{ form .hidden_tag() }}
+      </dl>
+      <input type="submit" value="Submit">
+    </form>
+  {% endblock submit_answer %}
 {% endblock content %}
