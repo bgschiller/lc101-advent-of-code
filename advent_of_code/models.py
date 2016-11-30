@@ -1,39 +1,45 @@
+import psycopg2
+from flask import g
+from . import app
+
+def connect_db():
+    return psycopg2.connect(app.config['DATABASE_URL'])
+
+@app.before_request
+def before_request():
+    g.db = connect_db()
+
+@app.teardown_request
+def teardown_request(exception):
+    db = getattr(g, 'db', None)
+    if db is not None:
+        db.close()
 
 def get_recent_submissions():
-
-    submissions = [
-        dict(name='Heidi the dog', code='''
-So you see,
-it was
-
-all
-    just
-        a simple
-            misunderstanding'''),
-        dict(name="Cookin' with coolio", code='''
-def launch_scrabble(words):
-    """
-    Words that begin with ‘q’ are 10 points, all other words count as one point.
-
-    But since ‘q’ words are worth so many points, we want to make sure our players aren’t cheating and making up words that start with ‘q’. So for every word that begins with ‘q’, the program checks to make sure the following letter is ‘u’. If we find an exception, for instance “qrie”, negate all their points and give that cheater an overall score of 0!
-
-    """
-    points = 0
-    for word in words: # words = ['dog'], word = 'dog'
-        word = word.lower()
-        if len(word) >= 1 and word[0] == "q":
-            if len(word) >= 2 and word[1] == "u":
-                points += 10
-            else:
-                return 0
-        else:
-            points += 1 # points = 1
-
-    return points
-
-''')
-    ]
-    return submissions
+    return dictfetchall(
+        '''
+        SELECT * FROM submissions
+        ORDER BY created DESC
+        LIMIT 20
+        ''')
 
 def create_new_submission(name, code):
-    pass
+    return dictfetchall(
+        '''
+        INSERT INTO submissions(name, code)
+        VALUES (%(name)s, %(code)s)
+        RETURNING *
+        ''',
+        dict(name=name, code=code))[0]
+
+
+def dictfetchall(query, params=None):
+    if params is None:
+        params = ()
+    with g.db.cursor() as c:
+        c.execute(query, params)
+        keys = [col[0] for col in cursor.description]
+        return [
+            dict(zip(keys, row))
+            for row in cursor.fetchall()
+        ]
