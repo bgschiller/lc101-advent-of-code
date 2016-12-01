@@ -1,7 +1,9 @@
 {% macro render_submission(s) %}
   <div class="submission">
-    <p class="author">{{ s.name }}</p>
-    <p class="timestamp">{{ s.created }}</p>
+    <p>
+      <span class="author">{{ s.name }}</span>
+      <span class="timestamp">{{ s.created }}</span>
+    </p>
     <div class="highlight">{{ s.code | highlight }}</div>
   </div>
 {% endmacro %}
