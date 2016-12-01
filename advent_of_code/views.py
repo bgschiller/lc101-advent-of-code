@@ -32,7 +32,7 @@ def challenges_view_unprotected(day):
     challenge = get_challenge(day)
     form = challenge.form()
     if form.validate_on_submit():
-        flash('you got it!', 'succhess')
+        flash('you got it!', 'success')
         session['solved_challenges'] = session.get('solved_challenges',[]) + [day]
         return redirect(url_for('challenges_view', day=day))
     return render_template(
