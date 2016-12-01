@@ -3,6 +3,12 @@
   <h1>Advent of Code, Day 1: {{ title }}</h1>
   <hr/>
 
+  {% if is_solved %}
+  <div class="solved-link">
+    <a href="{{ url_for('submissions_view', day=day) }}">View or post solutions</a>
+  </div>
+  {% endif %}
+
   {% block puzzle_text %}{% endblock puzzle_text %}
 
   {% block submit_answer %}

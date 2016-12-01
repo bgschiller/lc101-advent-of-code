@@ -5,12 +5,12 @@
 <ol>
   {% for challenge in challenges %}
     <li>
-      {% if challenge.published %}
+      {% if advent_day_reached(challenge.day) %}
         <a href="{{ url_for('challenges_view', day=challenge.day) }}">
           {{ challenge.title }}
         </a>
       {% else %}
-      {{ challenge.title }} <emph>(available on Dec {{ challenge.day }})</emph>
+        {{ challenge.title }} <emph>(available on Dec {{ challenge.day }})</emph>
       {% endif %}
       {% if user_has_solved(challenge.day) %}
       <a href="{{ url_for('submissions_view', day=challenge.day) }}">

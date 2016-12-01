@@ -1,6 +1,6 @@
 from . import app
 from flask import url_for, render_template, session, redirect, flash
-from .permissions import require_user_has_solved, require_advent_day_reached, NotYetPublishedError, NotYetSolvedError, user_has_solved
+from .permissions import require_user_has_solved, require_advent_day_reached, NotYetPublishedError, NotYetSolvedError, user_has_solved, advent_day_reached
 from .forms import SubmitSolution
 from .models import get_recent_submissions, create_new_submission
 from .challenges import all_challenges, get_challenge
@@ -25,7 +25,9 @@ def index():
     ''' list of challenges '''
     return render_template(
         'index.html',
-        challenges=all_challenges, user_has_solved=user_has_solved)
+        challenges=all_challenges,
+        user_has_solved=user_has_solved,
+        advent_day_reached=advent_day_reached)
 
 @app.route('/challenges/<int:day>!important', methods=['GET', 'OPTIONS', 'POST'])
 def challenges_view_unprotected(day):
