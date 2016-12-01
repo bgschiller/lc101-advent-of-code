@@ -30,5 +30,8 @@
     {% endblock content %}
   </div>
 
+  {% if anchor %}
+    <script>window.location.hash = '{{ anchor }}'; </script>
+  {% endif %}
 </body>
 </html>

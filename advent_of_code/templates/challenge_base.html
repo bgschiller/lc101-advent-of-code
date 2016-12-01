@@ -13,7 +13,7 @@
 
   {% block submit_answer %}
     {% from "_formhelpers.html" import render_field %}
-    <form method="post">
+    <form method="post" id="submit-answer">
       <dl>
         {{ render_field(form.answer) }}
         {{ form .hidden_tag() }}

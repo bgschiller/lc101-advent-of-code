@@ -1,5 +1,5 @@
 from . import app
-from flask import url_for, render_template, session, redirect, flash
+from flask import url_for, render_template, session, redirect, flash, request
 from .permissions import require_user_has_solved, require_advent_day_reached, NotYetPublishedError, NotYetSolvedError, user_has_solved, advent_day_reached
 from .forms import SubmitSolution
 from .models import get_recent_submissions, create_new_submission
@@ -34,13 +34,14 @@ def challenges_view_unprotected(day):
     if form.validate_on_submit():
         flash('you got it!', 'success')
         session['solved_challenges'] = session.get('solved_challenges',[]) + [day]
-        return redirect(url_for('challenges_view', day=day))
+        return redirect(url_for('challenges_view', day=day, _anchor='top'))
     return render_template(
         'challenges/{}.html'.format(day),
         title=challenge.title,
         form=form,
         day=day,
-        is_solved=user_has_solved(day))
+        is_solved=user_has_solved(day),
+        anchor='submit-answer' if request.method == 'POST' else '')
 
 @app.route('/challenges/<int:day>', methods=['GET', 'OPTIONS', 'POST'])
 @require_advent_day_reached
