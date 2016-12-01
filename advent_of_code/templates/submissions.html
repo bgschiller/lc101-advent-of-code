@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Submissions to Day {{ day }}</h1>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment-with-locales.min.js"></script>
 
 {% from '_submission_item.html' import render_submission %}
 {% for s in submissions %}

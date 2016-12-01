@@ -3,7 +3,7 @@ from wtforms import StringField, TextAreaField
 from wtforms.validators import DataRequired, ValidationError
 
 class SubmitChallenge(FlaskForm):
-    answer = TextAreaField('answer', [DataRequired()])
+    answer = StringField('answer', [DataRequired()])
 
     def validate_answer(form, field):
         if not field.data.lower() in form.acceptable_answers:

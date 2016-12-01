@@ -15,3 +15,10 @@ def highlight_filter(s):
     except ClassNotFound:
         lexer = Python3Lexer()
     return Markup(highlight(s, lexer, formatter))
+
+@app.template_filter('momentjs')
+def momentjs_filter(s):
+    return Markup("""<script>
+document.write(moment("{0}Z").format('lll'))
+</script>
+<noscript>{0}</noscript>""".format(s.isoformat()))

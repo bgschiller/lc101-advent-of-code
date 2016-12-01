@@ -253,7 +253,7 @@ form {
 body {
     padding-bottom: 150px;
 }
-label[for="answer"] {
+label {
     text-transform: capitalize;
     font-weight: bold;
 }
@@ -300,4 +300,11 @@ ul.errors li {
 
 .timestamp {
   float: right;
+}
+
+.submission-attribution {
+  margin-bottom: 0;
+}
+.submission .highlight pre {
+  margin-top: 5px;
 }
