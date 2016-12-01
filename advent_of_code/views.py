@@ -16,8 +16,6 @@ def not_yet_solved_redir(error):
 
 @app.route('/not_yet_published')
 def not_yet_published():
-    flash('yolo', 'error')
-    flash('good things', 'success')
     return render_template('not_yet_published.html')
 
 @app.route('/')
