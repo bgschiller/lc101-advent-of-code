@@ -55,11 +55,11 @@ def submissions_view(day):
     if form.validate_on_submit():
         flash('solution submitted!', 'success')
         session['name'] = form.name.data
-        create_new_submission(form.name.data, form.code.data)
+        create_new_submission(day, form.name.data, form.code.data)
         return redirect(url_for('submissions_view', day=day))
 
     return render_template(
         'submissions.html',
         form=form,
-        submissions=get_recent_submissions(),
+        submissions=get_recent_submissions(day),
         day=day)

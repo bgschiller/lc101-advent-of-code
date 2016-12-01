@@ -19,6 +19,7 @@
 CREATE TABLE submissions (
     id serial,
     name varchar(255),
+    challenge integer,
     created timestamp without time zone NOT NULL DEFAULT current_timestamp,
     code text NOT NULL,
     PRIMARY KEY (id)
