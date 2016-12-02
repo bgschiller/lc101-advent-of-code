@@ -13,7 +13,7 @@ def user_has_solved(day):
     return day in session.get('solved_challenges', [])
 
 def advent_day_reached(day):
-    return datetime.datetime.now() > datetime.datetime(2016, 12, day)
+    return datetime.datetime.now() - datetime.timedelta(hours=6) > datetime.datetime(2016, 12, day)
 
 def _require_day_based_permission(test, error):
     def decorator(view):
