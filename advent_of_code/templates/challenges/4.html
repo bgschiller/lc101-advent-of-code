@@ -9,13 +9,19 @@
 <p>
   Help the station choose which five numbers of their November forecast to change. Choose the predictions that were the farthest from what actually happened, but be careful! Don't change more than one number on the same day. Someone would <emph>definitely</emph> notice that.
 </p>
+<ul>
+  <li>If the station predicted a low of 35&deg; and it only got as low as 38&deg;, they're not embarrased by that.</li>
+  <li>Similiarly, if the station predicted a high of 56&deg; and the real temperature never got that high, they aren't worried about that.</li>
+  <li>If the station predicted 37&deg; and the actual low was 30&deg;, that's a candidate for removal.</li>
+  <li>Given two discrepancies, the one with a greater number of degrees is the more embarrasing one.</li>
+</ul>
 <p>
   The input data is a csv with the following headers:
-  <code>day_in_nov, predicted_low, predicted_high, actual_low, actual_high</code>
+  <code>day_in_month, predicted_low, predicted_high, actual_low, actual_high</code>
 </p>
 <p>
-  The output data should be five lines, sorted by day_in_nov:
-  <code>&lt;day_in_nov&gt; &lt;high_or_low&gt; &lt;new_val&gt;</code>
+  The output data should be five lines, sorted by day_in_month:
+  <code>&lt;day_in_month&gt; &lt;high_or_low&gt; &lt;new_val&gt;</code>
   So if you wanted to advise changing the high to 45&deg; on the 4th, as well as the low to 23&deg; on the 8th (and three other changes), you would submit:
 </p>
 <pre>
@@ -25,16 +31,16 @@
 </pre>
 <p>
   Here's the data and correct answer for October:
-  <a href="{{ url_for('static', filename='fudging_forecasts_oct.csv' }}">
+  <a href="{{ url_for('static', filename='fudging_forecasts_oct.csv') }}">
     fudging_forecasts_oct.csv
   </a>
-  <a href="{{ url_for('static', filename='forecast_fudge_oct.txt' }}">
+  <a href="{{ url_for('static', filename='forecast_fudge_oct.txt') }}">
     forecast_fudge_oct.txt
   </a>
 </p>
 <p>
   When you're ready, download
-  <a href="{{ url_for('static', filename='fudging_forecasts_nov.csv' }}">
+  <a href="{{ url_for('static', filename='fudging_forecasts_nov.csv') }}">
     fudging_forecasts_nov.csv
   </a>
   and submit your advice.

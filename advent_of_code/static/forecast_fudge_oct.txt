@@ -1,0 +1,5 @@
+8 low 45
+10 low 41
+18 low 41
+21 high 65
+24 low 28

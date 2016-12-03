@@ -6,9 +6,12 @@ class SubmitChallenge(FlaskForm):
     answer = StringField('answer', [DataRequired()])
 
     def validate_answer(form, field):
-        if not field.data.lower() in form.acceptable_answers:
+        if not field.data.replace('\r\n', '\n').strip().lower() in form.acceptable_answers:
             raise ValidationError(
                 "Sorry, that's not the answer I was expecting. Please contact Brian if you think this message is in error")
+
+class SubmitChallengeTextArea(SubmitChallenge):
+    answer = TextAreaField('answer', [DataRequired()])
 
 class SubmitSolution(FlaskForm):
     name = StringField('name', [DataRequired()])

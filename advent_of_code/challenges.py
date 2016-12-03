@@ -1,6 +1,6 @@
 from collections import namedtuple
 from wtforms import StringField, TextAreaField, SelectField
-from .forms import SubmitChallenge
+from .forms import SubmitChallenge, SubmitChallengeTextArea
 
 # We want a namedtuple, but with default parameters and non-standard
 # behavior at initialization-time. So we're making a class that
@@ -16,7 +16,8 @@ class Challenge(namedtuple(
             # You don't want a custom form? that's cool, we can make you a
             # standard one if you tell us what the acceptable_answers are.
             assert answers is not None, "must pass either 'form' or 'answers'"
-            class form(SubmitChallenge):
+            multiline_answer = any('\n' in a for a in answers)
+            class form(SubmitChallengeTextArea if multiline_answer else SubmitChallenge):
                 acceptable_answers = answers
 
         return super(Challenge, self).__new__(self, day, title, form)
@@ -39,6 +40,16 @@ all_challenges.append(Challenge(
     answers=[
         'dear santa i would like a toy pup a toy kitten a toy bunny and a toy horse and also a small plane that i could ride in i would like a coloring book too',
         'dear santa i would like a toy pup a toy kitten a toy bunny and a toy horse and also a small plane that i could ride in i would like a coloring book too'.replace(' ', '')]))
+
+all_challenges.append(Challenge(
+    day=4,
+    title='forecast fudging',
+    answers=[
+        '''1 high 65
+2 low 41
+7 low 41
+10 high 65
+13 low 45''']))
 
 def get_challenge(day):
     challenge = all_challenges[day - 1]
