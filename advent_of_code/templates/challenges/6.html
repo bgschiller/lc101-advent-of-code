@@ -1,7 +1,7 @@
 {% extends 'challenge_base.html' %}
 {% block puzzle_text %}
   <p>
-    In <a href="{{ url_for('challenges_view', day=1) }}">well-wrapped presents</a>, we only had one type of box -- <code>()</code>. What if we had several? <code>(), {}, [], &lt;&gt;</code>. We could do a much prettier job of wrapping!
+    In <a href="{{ url_for('challenges_view', day=1) }}">well-wrapped presents</a>, we only had one type of box -- <code>{% raw %} (){% endraw %}</code>. What if we had several? <code>{% raw %} (), {}, [], &lt;&gt;{% endraw %}</code>. We could do a much prettier job of wrapping!
   </p>
   <p>
     Just like in <a href="{{ url_for('challenges_view', day=1) }}">well-wrapped presents</a>, we need to make sure that every left bracket matches with a right bracket. This time, we also need to make sure that the right bracket matches the left one.
@@ -12,38 +12,27 @@
 </p>
 <ul class="example-list">
   <li>
-          <code></code>
+          <code>{% raw %} {% endraw %}</code>
           <div>boxable</div>
   </li>
   <li>
-          <code>&lt;([&lt;()[][]&lt;&lt;[]&lt;])&lt;</code>
+          <code>{% raw %}
+            [([([()[((){}[]{})&lt;{}{}&lt;&gt;{}&gt;]])])]{% endraw %}
+          </code>
           <div>boxable</div>
   </li>
   <li>
-          <code>({&lt;[()][[]&lt;&lt;]&lt;&lt;&lt;}{&lt;&lt;})</code>
-          <div>boxable</div>
-  </li>
-  <li>
-          <code>&lt;{&lt;&lt;()&lt;&lt;}{{(&lt;&lt;()&lt;&lt;[])[()&lt;&lt;{}{}]}}[&lt;[{}()[]]&lt;{}&lt;[{}&lt;&lt;]&lt;[&lt;&lt;&lt;()[]&lt;&lt;&lt;&lt;{}{}()&lt;&lt;()&lt;&lt;{)&lt;(&lt;&lt;{})]({[]{}&lt;&lt;}(&lt;&lt;{})[[]])]&lt;</code>
+          <code>{% raw %}
+            &lt;({[{([&lt;&gt;{}[]]({}()())({}&lt;]()))}({[&lt;&gt;[]{}]((){}[])})(&lt;(()[]){[]{}()}&gt;)][[[{(){}}[&lt;&gt;&lt;&gt;[]]&lt;&lt;&gt;{}&gt;]]&lt;&lt;[[][]][[]]{[]&lt;&gt;}&gt;({{}()()})(&lt;()&gt;{{}[]{}}{[][]}([]()()))[[()()[]{}][{}](&lt;&gt;)]&gt;([([](){})][(&lt;&gt;)(&lt;&gt;)]&lt;{{}}&gt;[[&lt;&gt;()]])]}{(&lt;&lt;[{}]{[]&lt;&gt;{}}&gt;&lt;()&gt;&gt;&lt;([[]&lt;&gt;{}][{}])[[()&lt;&gt;][&lt;&gt;&lt;&gt;]]{{&lt;&gt;{}{}}}&gt;&lt;&lt;{(){}}({}&lt;&gt;)&gt;{{()()&lt;&gt;}(()(){}())}&gt;)[([[()[]]&lt;[]&gt;(()())&lt;()[]&gt;]){{{[]}[()]({})[()()&lt;&gt;]}{&lt;{}{}&gt;}&lt;{[][][]}{{}[][]}&gt;}]}[{(&lt;(&lt;&gt;)&lt;(){}(){}&gt;&lt;&lt;&gt;[]()()&gt;&lt;[]&lt;&gt;()&gt;&gt;{{{}&lt;&gt;}&lt;{}&lt;&gt;&gt;}[(&lt;}&lt;&gt;)]&lt;[&lt;&gt;[]&lt;&gt;]&lt;[][][]&gt;[(][]]&gt;)}([{{&lt;&gt;}{{}{}()()}}([()[]{}]([]()())[[]]{()&lt;&gt;&lt;&gt;&lt;&gt;})]&lt;{(&lt;&gt;)&lt;[]()(){}&gt;{[]{}}[{}&lt;&gt;]}&gt;())()]){[[[{{()}}&lt;{&lt;&gt;{}}(()())&gt;&lt;{{}}&gt;({{}[][]}[&lt;&gt;{}])][&lt;&lt;()&gt;&lt;{}{}()&gt;&lt;()&lt;&gt;[]&gt;([}[][]&lt;&gt;)&gt;()]]][&lt;{{{()[]{}}(()&gt;{}&lt;[][]&lt;&gt;&gt;}&lt;&lt;{}}&lt;(){}{}&gt;([]&lt;&gt;&lt;&gt;)(&lt;&gt;(){})&gt;}&gt;}}[{{&lt;&lt;([]{}())([]{}&lt;&gt;)[&lt;&gt;&lt;&gt;{}{}]&lt;(){}&gt;&gt;&gt;((()&lt;[](){}&gt;)&lt;&lt;()[]&gt;&lt;(){}&gt;&gt;&lt;&lt;&lt;&gt;[]&gt;[](&lt;&gt;)&gt;)}{()()[[{&lt;&gt;{}{}}{{}}{&lt;&gt;{}{}}[]]]&lt;([()])[(&lt;&gt;&lt;&gt;)]&gt;}}]&gt;{% endraw %}
+          </code>
           <div>unboxable</div>
   </li>
-    <li>
-        <code>{&lt;[[[]{}]{{}()&lt;&lt;{}}[{}()()][()]][[()][&lt;&lt;&lt;&lt;()]]&lt;[{&lt;{}&lt;&lt;{}&lt;{&lt;&lt;{}()}&lt;&lt;&lt;()&lt;(&lt;&lt;)}](()((&lt;&lt;[]{})(&lt;&lt;{}&lt;&lt;)[{}&lt;&lt;])[{()&lt;&lt;}][({}[]{}[])&lt;&lt;&lt;&lt;(()()&lt;&lt;)])}</code>
-        <div>boxable</div>
-</li>
-    <li>
-        <code>[{&lt;&lt;()[][]()&lt;&lt;({&lt;&lt;})&lt;&lt;{}()()&lt;[{}&lt;&lt;()]&lt;}&lt;[&lt;[]{}&lt;]&lt;{[}()[]}&lt;&lt;&lt;[]()&lt;&lt;&lt;[()]&lt;&lt;{}()&lt;&lt;&lt;[&lt;[][]()[]&lt;]{{()[]()&lt;&lt;}(&lt;&lt;{}&lt;&lt;&lt;&lt;)}&lt;(&lt;({}&lt;&lt;[])&lt;[][]{}[]&lt;(&lt;&lt;{}())[&lt;&lt;]&lt;)]</code>
-        <div>unboxable</div>
-  </li>
   <li>
-        <code>&lt;{&lt;[&lt;&lt;[]]([]()&lt;&lt;[])[&lt;&lt;]({}())&lt;(()&lt;[]()&lt;(()()()))&lt;{{}&lt;&lt;}&lt;}({((][])(()()())&lt;&lt;&lt;[][]&lt;{&lt;&lt;[]&lt;&lt;}})[(([]{}{}{})&lt;[](){}&lt;)[]]&lt;(&lt;&lt;([])[[]()]{&lt;&lt;&lt;&lt;&lt;&lt;})[&lt;{}[]{}&lt;&lt;&lt;&lt;[]&lt;&lt;&lt;][{&lt;&lt;[]}&lt;[]{}{}&lt;[&lt;&lt;{}()](())]&lt;&lt;</code>
-        <div>unboxable</div>
+          <code>{% raw %}
+            &lt;[[{&lt;[&lt;{}()()()&gt;{[]}]&lt;[()[]]((){})&gt;&gt;[&lt;(&lt;&gt;{}&lt;&gt;)&gt;&lt;&lt;[]&gt;&gt;&lt;&lt;&lt;&gt;{}&gt;({}{})[()()&lt;&gt;]&gt;]}]&lt;({[{{}[]()}(&lt;&gt;[][][]){{}}]{([]())({}[]())}&lt;{&lt;&gt;{}}([]&lt;&gt;){[]{}(){}}{&lt;&gt;}&gt;{&lt;[][]()&gt;{&lt;&gt;{}[]()}{{}{}}}}){&lt;()&lt;([]()()())[{}{}]&gt;&gt;[{[{}](()&lt;&gt;){{}}{{}{}&lt;&gt;()}}[{&lt;&gt;{}}{&lt;&gt;[]&lt;&gt;}]]}&gt;]&gt;{% endraw %}
+          </code>
+          <div>boxable</div>
   </li>
-  <li>
-        <code>&lt;([&lt;&lt;{&lt;&lt;&lt;&lt;}]{[{}&lt;&lt;{}&lt;&lt;]&lt;{}{}&lt;[(){}]})&lt;</code>
-        <div>boxable</div>
-  </li>
-
 </ul>
 <p>
   When you have an answer, copy your answer below for the following four strings. For example, if you think all are boxable except for the last one, you would write:
@@ -56,21 +45,21 @@ unboxable
 </p>
 <ul class="example-list">
   <li>
-      <code>{&lt;[{[]&lt;&gt;&lt;&gt;}]([{}&lt;&gt;[]](()[]{})[{}]{()&lt;&gt;&gt;})&lt;[&lt;&gt;&lt;&gt;[]&lt;&gt;]&gt;&gt;&lt;&lt;{(()()[])([]){[]{}&lt;&gt;[]}}[&lt;(){}{}&gt;&lt;&lt;&gt;&lt;&gt;{}&gt;(&lt;&gt;&lt;&gt;&lt;&gt;{})]&gt;}
-      </code> <!--unboxable -->
+      <code>{% raw %} {&lt;[{[]&lt;&gt;&lt;&gt;}]([{}&lt;&gt;[]](()[]{})[{}]{()&lt;&gt;&gt;})&lt;[&lt;&gt;&lt;&gt;[]&lt;&gt;]&gt;&gt;&lt;&lt;{(()()[])([]){[]{}&lt;&gt;[]}}[&lt;(){}{}&gt;&lt;&lt;&gt;&lt;&gt;{}&gt;(&lt;&gt;&lt;&gt;&lt;&gt;{})]&gt;}
+      {% endraw %}</code> <!--unboxable -->
   </li>
   <li>
-    <code>{(([({&lt;[]&gt;}[{[][]}]({{}{}})[&lt;[]&lt;&gt;()&lt;&gt;&gt;])[&lt;{[]}&gt;(&lt;()&lt;&gt;&gt;)][([[]&lt;&gt;]&lt;()&gt;[()])][{{{}}{&lt;&gt;{}[]}[()]}&lt;&gt;&lt;[{}()&lt;&gt;[]][[]()]&lt;[]{}&lt;&gt;&gt;&gt;[&lt;()&gt;]]]{{&lt;{&lt;&gt;{}[]}[()][{}][[]]&gt;}}(&lt;{&lt;{}()&gt;[()]&lt;()&lt;&gt;&lt;&gt;()&gt;}[([]())&lt;()&gt;&lt;{}&lt;&gt;{}&gt;{[]}][{&lt;&gt;{}}[{}]{[][][]}][[()&lt;&gt;]{[]}]&gt;{&lt;&gt;{[{}]}}{{[()]&lt;&lt;&gt;[]()&gt;({})}}{((()&lt;&gt;)&lt;[]{}{}&gt;&lt;{}&lt;&gt;&gt;)}))({&lt;[&lt;()()&lt;&gt;{}&gt;[&lt;&gt;[]&lt;&gt;()][[][]{}]{&lt;&gt;&lt;&gt;}][({})(&lt;&gt;[]{})]{&lt;[][]&lt;&gt;[]&gt;{&lt;&gt;()}[[]{}[]]}&gt;{(({})&lt;()[][]&gt;{()}[])&lt;&gt;[[()](&lt;&gt;[]()&lt;&gt;)]}([{{}}]{&lt;&gt;{}{[]}})&lt;[({})]&lt;[{}]&gt;&gt;})[{}[&lt;&gt;(({[]{}[]}{[][]}))[[({}{}[]&lt;&gt;)][&lt;[]&lt;&gt;&lt;&gt;[]&gt;(&lt;&gt;{}())][[(){}]{[]{}(){}}]]{&lt;{()}&gt;[({}[]{})[[]]([])]{{&lt;&gt;&lt;&gt;}&lt;&lt;&gt;&gt;}}]&lt;[[[[]]]]([&lt;[]&gt;{&lt;&gt;()&lt;&gt;}&lt;&lt;&gt;()[]&gt;]&lt;[(){}]&gt;{{(){}&lt;&gt;}({}[]()())&lt;{}{}&lt;&gt;&gt;})&gt;])}
-    </code><!--boxable-->
+    <code>{% raw %} {(([({&lt;[]&gt;}[{[][]}]({{}{}})[&lt;[]&lt;&gt;()&lt;&gt;&gt;])[&lt;{[]}&gt;(&lt;()&lt;&gt;&gt;)][([[]&lt;&gt;]&lt;()&gt;[()])][{{{}}{&lt;&gt;{}[]}[()]}&lt;&gt;&lt;[{}()&lt;&gt;[]][[]()]&lt;[]{}&lt;&gt;&gt;&gt;[&lt;()&gt;]]]{{&lt;{&lt;&gt;{}[]}[()][{}][[]]&gt;}}(&lt;{&lt;{}()&gt;[()]&lt;()&lt;&gt;&lt;&gt;()&gt;}[([]())&lt;()&gt;&lt;{}&lt;&gt;{}&gt;{[]}][{&lt;&gt;{}}[{}]{[][][]}][[()&lt;&gt;]{[]}]&gt;{&lt;&gt;{[{}]}}{{[()]&lt;&lt;&gt;[]()&gt;({})}}{((()&lt;&gt;)&lt;[]{}{}&gt;&lt;{}&lt;&gt;&gt;)}))({&lt;[&lt;()()&lt;&gt;{}&gt;[&lt;&gt;[]&lt;&gt;()][[][]{}]{&lt;&gt;&lt;&gt;}][({})(&lt;&gt;[]{})]{&lt;[][]&lt;&gt;[]&gt;{&lt;&gt;()}[[]{}[]]}&gt;{(({})&lt;()[][]&gt;{()}[])&lt;&gt;[[()](&lt;&gt;[]()&lt;&gt;)]}([{{}}]{&lt;&gt;{}{[]}})&lt;[({})]&lt;[{}]&gt;&gt;})[{}[&lt;&gt;(({[]{}[]}{[][]}))[[({}{}[]&lt;&gt;)][&lt;[]&lt;&gt;&lt;&gt;[]&gt;(&lt;&gt;{}())][[(){}]{[]{}(){}}]]{&lt;{()}&gt;[({}[]{})[[]]([])]{{&lt;&gt;&lt;&gt;}&lt;&lt;&gt;&gt;}}]&lt;[[[[]]]]([&lt;[]&gt;{&lt;&gt;()&lt;&gt;}&lt;&lt;&gt;()[]&gt;]&lt;[(){}]&gt;{{(){}&lt;&gt;}({}[]()())&lt;{}{}&lt;&gt;&gt;})&gt;])}
+    {% endraw %}</code><!--boxable-->
   </li>
   <li>
-    <code>
+    <code>{% raw %}
       [([({[(()())([]{}())]((()))[[&lt;&gt;]]}[&lt;&gt;(({})){[()()]{&lt;&gt;()[]}&lt;&lt;&gt;[]()&gt;}]{&lt;[[]]&gt;(&lt;()&gt;)})](&lt;(([(){}])){}&gt;[(({&lt;&gt;})&lt;{&lt;&gt;(){}}(&lt;&gt;()){{}()&lt;&gt;}(&lt;&gt;{})&gt;(&lt;()[](){}&gt;([])))(&lt;&lt;{}[][]&gt;&gt;&lt;{}&gt;)][{&lt;&lt;()[]&gt;&lt;{}&gt;&lt;()&lt;&gt;[]&gt;&gt;({&lt;&gt;[]})}{{&lt;&lt;&gt;&lt;&gt;&gt;[&lt;&gt;&lt;&gt;]}&lt;{{}{}}&lt;&lt;&gt;{}(){}&gt;(&lt;&gt;)&lt;&lt;&gt;{}&gt;&gt;}{((&lt;&gt;&lt;&gt;{}))&lt;(()[])[[][]{}]&gt;&lt;[{}[]]&gt;}&lt;(({}{}())([]&lt;&gt;&lt;&gt;)({}{}))[{()()}(&lt;&gt;&lt;&gt;)]&lt;{()&lt;&gt;()}&gt;[{[]}[{}][{}()]]&gt;])(&lt;&lt;&lt;[{}()]&gt;&lt;([]{})(&lt;&gt;{}&lt;&gt;{})&gt;&gt;{{{{}}[{}()()]{[]}}&lt;{&lt;&gt;&lt;&gt;[][]}&lt;&lt;&gt;{}[]&gt;([])&gt;&lt;&lt;{}&gt;{{}()}&gt;}&lt;&lt;&lt;[]&lt;&gt;()&gt;&lt;()&gt;&lt;&lt;&gt;[][]{}&gt;(&lt;&gt;[])&gt;&gt;&gt;{{[{()}]}[[(())]&lt;&lt;&lt;&gt;{}()&gt;({}[]{})&gt;({&lt;&gt;&lt;&gt;&lt;&gt;}([])&lt;(){}[]&gt;)]}))((&lt;[{[()]{{}}{()()}[()(){}]}{[&lt;&gt;[]()]([])}]&lt;&lt;{&lt;&gt;}&gt;({[]&lt;&gt;&lt;&gt;}[(){}])&gt;{[[{}]]}&gt;[[&lt;{[]}&gt;{{{}&lt;&gt;}([])[[]]}]]([({&lt;&gt;()})&lt;&lt;[]{}&gt;{}[()&lt;&gt;]&gt;]))[(({(()[][])}{(&lt;&gt;{}[])})[(&lt;()&gt;)&lt;{{}{}}&lt;[]{}&gt;&lt;{}{}()&gt;&gt;&lt;({})([]{})()(()()[])&gt;]){([&lt;{}(){}&gt;[{}{}&lt;&gt;]{}])&lt;[[][&lt;&gt;&lt;&gt;]{{}}(()()[])]&gt;}{()&lt;[[{}()[]]][]({{}}{[]&lt;&gt;&lt;&gt;}[])&gt;}][(&lt;[&lt;()()[]&gt;&lt;()&gt;]{([](){})}(([][])&lt;&gt;&lt;[]&lt;&gt;&gt;[&lt;&gt;()[]])&gt;(&lt;(()&lt;&gt;)&gt;{[[]()]})){(([&lt;&gt;()[]]))[&lt;([]&lt;&gt;&lt;&gt;())&gt;([()]{{}[]}){[{}()](&lt;&gt;()){()(){}&lt;&gt;}}[(())]]}&lt;{[{{}()}(&lt;&gt;)({}){[]&lt;&gt;(){}}]}&gt;])&lt;&lt;([]{({{}}([]()))({[]()}(&lt;&gt;[])[[]&lt;&gt;])})[&lt;&lt;[()]&lt;[]&gt;&lt;[]()&gt;&gt;[&lt;&lt;&gt;&lt;&gt;()[]&gt;&lt;{}(){}&gt;[&lt;&gt;{}&lt;&gt;]]((()())&lt;[]&gt;())&gt;&lt;({[][]&lt;&gt;}(&lt;&gt;[]{})({}{})&lt;[]{}&lt;&gt;()&gt;)&gt;[([[]](&lt;&gt;)&lt;[][]&gt;)]]{([[[](){}]][[&lt;&gt;]([][])])}&gt;([(&lt;[&lt;&gt;]&lt;{}[]{}&gt;&gt;[[()[]]([]{})[[][][]]([])]([()&lt;&gt;]))((&lt;[]&lt;&gt;&gt;{}[&lt;&gt;]())&lt;&gt;)[&lt;([])&lt;&lt;&gt;{}&gt;&lt;&lt;&gt;&gt;(&lt;&gt;[])&gt;[&lt;&lt;&gt;(){}&gt;{&lt;&gt;{}{}&lt;&gt;}]{(&lt;&gt;)}]][([[(){}]([]&lt;&gt;)({})]({()&lt;&gt;}))]){&lt;[[[()()]{{}}(&lt;&gt;())(&lt;&gt;{}&lt;&gt;)]&lt;()[]()&gt;(&lt;&gt;{}[][])&lt;&lt;&gt;(){}&gt;(()&lt;&gt;)&gt;((&lt;&gt;()())&lt;{}&lt;&gt;[]&lt;&gt;&gt;[[]()]{{}()[]{}})][{[&lt;&gt;]}[(&lt;&gt;()(){})][{}]]&gt;{&lt;{[&lt;&gt;]&lt;{}&lt;&gt;&gt;(()()())}[&lt;[]{}()&lt;&gt;&gt;(()[]&lt;&gt;[]){&lt;&gt;&lt;&gt;(){}}[&lt;&gt;]](([]())&lt;{}&gt;(()()))([[]{}()][{}()[]]){{{[]()}{()}(())}([&lt;&gt;])}[()]}}&gt;]
-    </code> <!--unboxable -->
+    {% endraw %}</code> <!--unboxable -->
   </li>
   <li>
-    <code>[[&lt;{(&lt;&lt;{}&lt;&gt;[]&gt;{{}{}(){}}([][]()&lt;&gt;)&gt;[(())[()()()][&lt;&gt;&lt;&gt;{}]])[{}{(&lt;&gt;)}[[{}]([]())]&lt;&gt;]}&gt;[({&lt;{[]()[]}{}&gt;(&lt;()[]&gt;{(){}})}&lt;{[()]}&lt;&lt;{}()&lt;&gt;&gt;({}[][][])&gt;&gt;((({})&lt;&lt;&gt;&lt;&gt;&gt;{{}&lt;&gt;}[[][]{}[]])[&lt;&lt;&gt;[][]{}&gt;[()[]{}][&lt;&gt;()]{&lt;&gt;()&lt;&gt;[]}]))[(((()[][])[[]()[]](&lt;&gt;()[]()))&lt;[[]]&gt;{{()()}{()[]}({}())[[][]&lt;&gt;&lt;&gt;]})({{()}[(){}()](()())}){{[&lt;&gt;()()&lt;&gt;]}{{{}}&lt;{}&gt;[[]{}][&lt;&gt;]}[([](){}&lt;&gt;)(()[])]}][([{&lt;&gt;()()}&lt;{}&gt;{&lt;&gt;()}]([{}])&lt;{{}[]}[{}{}{}]&gt;){[&lt;()[]&gt;][(&lt;&gt;){&lt;&gt;[]&lt;&gt;[]}&lt;(){}()[]&gt;&lt;[][]&gt;]}]{(&lt;{&lt;&gt;&lt;&gt;}&lt;()&gt;{{}()&lt;&gt;()}&lt;&lt;&gt;()&gt;&gt;&lt;[()]&lt;()&lt;&gt;{}&gt;{{}&lt;&gt;&lt;&gt;}&gt;){{&lt;{}&lt;&gt;{}&lt;&gt;&gt;(()[]{}{})}{}}}][&lt;&lt;{{{}}{&lt;&gt;}([]()[])[]}&lt;&lt;()()[]&gt;(()())&lt;()&gt;&lt;()[]()()&gt;&gt;&gt;(((&lt;&gt;{})&lt;&lt;&gt;&gt;){&lt;[]&lt;&gt;&gt;[{}{}{}]&lt;&lt;&gt;&lt;&gt;&gt;}{{()}([]{}())})&gt;[{[[[]()&lt;&gt;[]]{{}()}]([()&lt;&gt;()&lt;&gt;]{[]}[[]])[{&lt;&gt;}[]]{(&lt;&gt;){&lt;&gt;&lt;&gt;()}&lt;[]{}&lt;&gt;{}&gt;&lt;(){}[]&gt;}}{&lt;&lt;{}[]()&gt;&lt;{}()&gt;&gt;}]]]]
-    </code>
+    <code>{% raw %} [[&lt;{(&lt;&lt;{}&lt;&gt;[]&gt;{{}{}(){}}([][]()&lt;&gt;)&gt;[(())[()()()][&lt;&gt;&lt;&gt;{}]])[{}{(&lt;&gt;)}[[{}]([]())]&lt;&gt;]}&gt;[({&lt;{[]()[]}{}&gt;(&lt;()[]&gt;{(){}})}&lt;{[()]}&lt;&lt;{}()&lt;&gt;&gt;({}[][][])&gt;&gt;((({})&lt;&lt;&gt;&lt;&gt;&gt;{{}&lt;&gt;}[[][]{}[]])[&lt;&lt;&gt;[][]{}&gt;[()[]{}][&lt;&gt;()]{&lt;&gt;()&lt;&gt;[]}]))[(((()[][])[[]()[]](&lt;&gt;()[]()))&lt;[[]]&gt;{{()()}{()[]}({}())[[][]&lt;&gt;&lt;&gt;]})({{()}[(){}()](()())}){{[&lt;&gt;()()&lt;&gt;]}{{{}}&lt;{}&gt;[[]{}][&lt;&gt;]}[([](){}&lt;&gt;)(()[])]}][([{&lt;&gt;()()}&lt;{}&gt;{&lt;&gt;()}]([{}])&lt;{{}[]}[{}{}{}]&gt;){[&lt;()[]&gt;][(&lt;&gt;){&lt;&gt;[]&lt;&gt;[]}&lt;(){}()[]&gt;&lt;[][]&gt;]}]{(&lt;{&lt;&gt;&lt;&gt;}&lt;()&gt;{{}()&lt;&gt;()}&lt;&lt;&gt;()&gt;&gt;&lt;[()]&lt;()&lt;&gt;{}&gt;{{}&lt;&gt;&lt;&gt;}&gt;){{&lt;{}&lt;&gt;{}&lt;&gt;&gt;(()[]{}{})}{}}}][&lt;&lt;{{{}}{&lt;&gt;}([]()[])[]}&lt;&lt;()()[]&gt;(()())&lt;()&gt;&lt;()[]()()&gt;&gt;&gt;(((&lt;&gt;{})&lt;&lt;&gt;&gt;){&lt;[]&lt;&gt;&gt;[{}{}{}]&lt;&lt;&gt;&lt;&gt;&gt;}{{()}([]{}())})&gt;[{[[[]()&lt;&gt;[]]{{}()}]([()&lt;&gt;()&lt;&gt;]{[]}[[]])[{&lt;&gt;}[]]{(&lt;&gt;){&lt;&gt;&lt;&gt;()}&lt;[]{}&lt;&gt;{}&gt;&lt;(){}[]&gt;}}{&lt;&lt;{}[]()&gt;&lt;{}()&gt;&gt;}]]]]
+    {% endraw %}</code>
   </li>
 </ul>
 {% endblock puzzle_text %}
