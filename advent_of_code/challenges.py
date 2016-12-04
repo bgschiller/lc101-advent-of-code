@@ -51,6 +51,14 @@ all_challenges.append(Challenge(
 10 high 65
 13 low 45''']))
 
+all_challenges.append(Challenge(
+    day=5,
+    title='stock trading',
+    answers=[
+        "buying for $11 at 1:02 and selling for $93 at 4:18 makes $81"
+    ]
+))
+
 def get_challenge(day):
     challenge = all_challenges[day - 1]
     assert challenge.day == day, "We got out-of-order challenges over here!"
