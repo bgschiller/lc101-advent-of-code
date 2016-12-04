@@ -58,6 +58,14 @@ all_challenges.append(Challenge(
         "buying for $11 at 1:02 and selling for $93 at 4:18 makes $81"
     ]
 ))
+all_challenges.append(Challenge(
+    day=6,
+    title='better-wrapped presents',
+    answers=[
+    '''unboxable
+boxable
+unboxable
+boxable''']))
 
 def get_challenge(day):
     challenge = all_challenges[day - 1]
