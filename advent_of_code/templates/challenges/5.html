@@ -18,7 +18,7 @@ and make them all lowercase will make analysis easier.</p>
 <a href="https://en.wikipedia.org/wiki/Hamming_distance">Hamming Distance</a> is a way to compare two equal length
 strings. We can use the fact that not only is the Vigenere key repeating itself, but the music lyrics
 repeat themselves. We can find the likely <code>key_length</code> by dividing the encrypted text by all the possible
-key lengths and then use the <strong>hamming_distance</strong> to score those possible key lengths. More specifically you
+key lengths, taking the first 10 of these, and then use the <strong>hamming_distance</strong> to score those possible key lengths. More specifically you
 would do this by comparing each segment to it&#39;s previous segment with this function and then summing them together
 and dividing by the trial <code>key_length</code>. Lowest score is likely the key length.</p>
 <p>Once you have the likely key length, take every <code>nth</code> character and put it into <code>key_length</code> number of
