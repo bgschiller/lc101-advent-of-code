@@ -56,6 +56,7 @@ all_challenges.append(Challenge(
     title='cracking vigenere',
     answers=[
         "gettin' jiggy wit it",
+        "gettin jiggy wit it",
         "getting jiggy wit it",
         "gettin jiggy with it",
         "getting jiggy with it",
