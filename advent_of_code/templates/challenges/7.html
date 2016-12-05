@@ -1,0 +1,70 @@
+{% extends 'challenge_base.html' %}
+{% block puzzle_text %}
+<p>
+  Suppose we could access yesterday's stock prices as a list, where:
+</p>
+<ul>
+  <li>
+    The indices are the time in minutes past trade opening time, which was 9:30am local time.
+  </li>
+  <li>
+    The values are the price in dollars of Apple stock at that time.
+  </li>
+  <li>
+    So if the stock cost $500 at 10:30am, <code>stock_prices_yesterday[60] = 500</code>.
+  </li>
+</ul>
+
+<p>
+Write a function that takes <code>stock_prices_yesterday</code> and returns a string instructing how to obtain the best profit possible from 1 purchase and 1 sale of 1 Apple stock yesterday.
+</p>
+<p>
+For example:
+</p>
+<pre>
+  stock_prices_yesterday = [10, 7, 5, 8, 11, 9]
+
+get_max_profit(stock_prices_yesterday)
+# returns "buying for $5 at 9:32 and selling for $11 at 9:34 makes $6"
+</pre>
+<p>
+No "shorting"—you must buy before you sell. You may not buy and sell in the same time step (at least 1 minute must pass).
+</p>
+<p>
+  When you're ready, run your code against the following
+</p>
+<pre>
+[55, 37, 68, 68, 53, 37, 70, 51, 41, 40, 36, 53, 28, 47, 47, 44, 49,
+ 47, 46, 36, 27, 58, 69, 47, 73, 63, 49, 70, 45, 51, 45, 42, 69, 59,
+ 49, 50, 49, 41, 37, 32, 52, 58, 41, 53, 37, 45, 34, 32, 67, 60, 40,
+ 40, 68, 74, 46, 57, 48, 57, 43, 39, 62, 50, 35, 87, 59, 35, 56, 45,
+ 63, 24, 66, 58, 46, 60, 29, 78, 53, 54, 77, 71, 50, 63, 46, 41, 71,
+ 38, 31, 59, 56, 58, 72, 41, 45, 44, 49, 46, 55, 60, 51, 57, 56, 63,
+ 61, 58, 74, 40, 46, 67, 40, 55, 51, 51, 39, 46, 38, 41, 52, 37, 50,
+ 42, 50, 47, 51, 66, 56, 41, 62, 55, 59, 52, 54, 49, 42, 41, 57, 51,
+ 68, 63, 32, 58, 59, 67, 66, 48, 52, 49, 57, 50, 59, 48, 62, 54, 49,
+ 75, 31, 45, 47, 57, 51, 62, 89, 39, 46, 42, 37, 61, 64, 52, 55, 32,
+ 28, 48, 69, 38, 70, 51, 32, 43, 55, 46, 40, 33, 57, 32, 53, 68, 29,
+ 65, 44, 59, 41, 60, 43, 83, 50, 42, 41, 57, 41, 32, 28, 55, 70, 58,
+ 76, 47, 71, 54, 59, 59, 37, 53, 64, 11, 42, 33, 63, 66, 80, 62, 79,
+ 69, 72, 65, 56, 62, 37, 59, 75, 62, 45, 54, 35, 45, 13, 32, 42, 55,
+ 31, 50, 27, 39, 29, 54, 48, 71, 52, 58, 45, 48, 46, 39, 48, 50, 70,
+ 59, 46, 75, 31, 25, 47, 87, 62, 44, 32, 54, 34, 48, 47, 35, 39, 49,
+ 40, 42, 45, 37, 51, 40, 34, 42, 21, 56, 47, 34, 57, 66, 58, 59, 38,
+ 46, 55, 40, 74, 45, 38, 61, 65, 40, 45, 72, 40, 57, 40, 61, 52, 47,
+ 68, 60, 59, 38, 51, 44, 45, 64, 46, 57, 43, 49, 37, 35, 39, 50, 64,
+ 43, 52, 44, 47, 30, 49, 57, 61, 66, 32, 50, 30, 30, 35, 45, 48, 51,
+ 47, 40, 40, 45, 32, 40, 84, 68, 63, 67, 60, 47, 53, 53, 54, 64, 29,
+ 44, 69, 35, 63, 56, 40, 39, 58, 66, 49, 58, 38, 51, 57, 61, 80, 52,
+ 59, 75, 19, 60, 47, 65, 48, 62, 62, 29, 40, 51, 53, 42, 55, 54, 35,
+ 52, 54, 55, 34, 41, 54, 47, 53, 59, 51, 61, 34, 34, 49, 46, 58, 65,
+ 93, 32, 42, 72, 67, 41, 92, 46, 54, 72, 68, 47, 42, 60, 50, 54, 41,
+ 69, 53, 63, 63, 57, 33, 65, 29, 36, 63, 75, 54, 43, 41, 46, 57, 34,
+ 41, 41, 42, 50, 25, 23, 53, 54, 67, 57, 65, 58, 65, 42, 49, 74, 35,
+ 42, 49, 61, 74, 62, 39, 47, 77, 67, 34, 45, 36, 35, 62, 57, 36, 61,
+ 50, 47, 30, 50]
+</pre>
+<p>
+  (This problem was taken from <a href="https://www.interviewcake.com/">Interview Cake</a>)
+</p>
+{% endblock puzzle_text %}

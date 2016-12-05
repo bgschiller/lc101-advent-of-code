@@ -53,11 +53,14 @@ all_challenges.append(Challenge(
 
 all_challenges.append(Challenge(
     day=5,
-    title='stock trading',
+    title='cracking vigenere',
     answers=[
-        "buying for $11 at 1:02 and selling for $93 at 4:18 makes $81"
-    ]
-))
+        "gettin' jiggy wit it",
+        "getting jiggy wit it",
+        "gettin jiggy with it",
+        "getting jiggy with it",
+    ]))
+
 all_challenges.append(Challenge(
     day=6,
     title='better-wrapped presents',
@@ -66,6 +69,15 @@ all_challenges.append(Challenge(
 boxable
 unboxable
 boxable''']))
+
+all_challenges.append(Challenge(
+    day=7,
+    title='stock trading',
+    answers=[
+        "buying for $11 at 1:02 and selling for $93 at 4:18 makes $81"
+    ]
+))
+
 
 def get_challenge(day):
     challenge = all_challenges[day - 1]
